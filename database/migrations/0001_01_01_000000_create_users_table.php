@@ -11,21 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            Schema::create('users', function (Blueprint $table): void {
-                $table->id();
-                $table->uuid('uuid')->unique();
-                $table->string('name');
-                $table->string('email')->unique();
-                $table->string('phone')->nullable();
-                $table->foreignId('role_id')->constrained()->cascadeOnDelete();
-                $table->string('avatar')->nullable();
-                $table->timestamp('email_verified_at')->nullable();
-                $table->string('password');
-                $table->boolean('is_active')->default(true);
-                $table->timestamps();
-                $table->softDeletes();
-            });
+        Schema::create('users', function (Blueprint $table): void {
+            $table->id();
+            $table->uuid('uuid')->unique();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('phone')->nullable();
+            $table->foreignId('role_id')->constrained()->cascadeOnDelete();
+            $table->string('avatar')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

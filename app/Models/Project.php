@@ -26,7 +26,7 @@ class Project extends Model
         'end_date' => 'date',
     ];
 
-    public static function boot()
+    public static function booted()
     {
         static::creating(fn ($model) => $model->uuid = (string) Str::uuid());
     }

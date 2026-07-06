@@ -7,6 +7,7 @@ namespace App\Repositories\Interfaces;
 use App\Models\User;
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 
 interface UserRepositoryInterface
 {
@@ -84,7 +85,7 @@ interface UserRepositoryInterface
     /**
      * Check whether a user exists by UUID.
      */
-    public function exists(string $uuid): bool;
+    public function exists(string $uuid): array;
 
     /**
      * Search users by name or email.
