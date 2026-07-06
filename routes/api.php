@@ -14,11 +14,11 @@ Route::prefix('users')->group(function () {
     Route::get('/{uuid}', [UserController::class, 'show'])->name('api.users.show');
     Route::get('/{uuid}/exists', [UserController::class, 'exists'])->name('api.users.exists');
 
-    Route::post('/', [UserController::class, 'store']);
-    Route::put('/{uuid}', [UserController::class, 'update']);
+    Route::post('/', [UserController::class, 'store'])->name('api.users.store');
+    Route::put('/{uuid}', [UserController::class, 'update'])->name('api.users.update');
 
-    Route::delete('/{uuid}', [UserController::class, 'destroy']);
+    Route::delete('/{uuid}', [UserController::class, 'destroy'])->name('api.users.destroy');
 
-    Route::post('/{uuid}/restore', [UserController::class, 'restore']);
-    Route::delete('/{uuid}/force', [UserController::class, 'forceDelete']);
+    Route::post('/{uuid}/restore', [UserController::class, 'restore'])->name('api.users.restore');
+    Route::delete('/{uuid}/force', [UserController::class, 'forceDelete'])->name('api.users.forceDelete');
 });

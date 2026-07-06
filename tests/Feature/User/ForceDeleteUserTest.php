@@ -10,7 +10,7 @@ it('can force delete a user', function (): void {
         'deleted_at' => now()
     ]);
 
-    $response = $this->deleteJson(route('api.users.force-delete', $user->uuid));
+    $response = $this->deleteJson(route('api.users.forceDelete', $user->uuid));
 
     $response->assertStatus(204);
 

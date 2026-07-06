@@ -84,7 +84,7 @@ final class UserController extends Controller
     {
         $this->userRepository->destroy($uuid);
 
-        return response()->json(['message' => 'User deleted']);
+        return response()->json(['message' => 'User deleted'], 204);
     }
 
     public function restore(string $uuid): JsonResponse
@@ -98,7 +98,7 @@ final class UserController extends Controller
     {
         $this->userRepository->forceDelete($uuid);
 
-        return response()->json(['message' => 'User permanently deleted']);
+        return response()->json(['message' => 'User permanently deleted'], 204);
     }
 
     public function stats(Request $request): JsonResponse
