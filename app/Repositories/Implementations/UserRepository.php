@@ -32,7 +32,7 @@ readonly class UserRepository implements UserRepositoryInterface
             )
             ->when(
                 isset($filters['is_active']),
-                fn (Builder $query) => $query->where('is_active', (bool) $filters['is_active'])
+                fn (Builder $query) => $query->where('is_active', filter_var($filters['is_active'], FILTER_VALIDATE_BOOLEAN))
             )
             ->latest()
             ->cursorPaginate($perPage);
@@ -151,11 +151,26 @@ readonly class UserRepository implements UserRepositoryInterface
     /**
      * Check whether a user exists.
      */
-    public function exists(string $uuid): bool
+    public function exists(string $uuid): array
     {
-        return User::query()
-            ->where('uuid', $uuid)
-            ->exists();
+        $exists = User::query()->where('uuid', $uuid)->exists();
+
+        if (!$exists) {
+            return [
+                'data' => [
+                    'message' => 'User not found.',
+                    'exists' => false,
+                ],
+            ];
+        }
+
+        return [
+            'data' => [
+                'message' => 'User already exists.',
+                'exists' => true,
+                'uuid' => $uuid,
+            ],
+        ];
     }
 
     /**

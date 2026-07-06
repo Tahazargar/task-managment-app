@@ -32,7 +32,7 @@ class Task extends Model
         'type_id' => 'integer',
     ];
 
-    public static function boot()
+    public static function booted()
     {
         static::creating(fn ($model) => $model->uuid = (string) Str::uuid());
     }
