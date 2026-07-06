@@ -16,6 +16,7 @@ final class UserStoreRequest extends FormRequest
             'phone' => ['nullable', 'string', 'max:20', 'unique:users,phone'],
             'password' => ['required', 'string', 'min:8'],
             'is_active' => ['boolean'],
+            'role_id' => ['required', 'exists:roles,id', 'integer'],
         ];
     }
 

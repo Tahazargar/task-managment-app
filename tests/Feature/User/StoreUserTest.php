@@ -1,16 +1,20 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
 it('can store a new user', function (): void {
+    $role = Role::factory()->create();
+
     $payload = [
         'name' => 'Taha Dev',
         'email' => 'taha@example.com',
         'phone' => '+989123456789',
         'is_active' => true,
-        'password' => 'secret-password'
+        'password' => 'secret-password',
+        'role_id' => $role->id
     ];
 
     $response = $this->postJson(route('api.users.store'), $payload);
